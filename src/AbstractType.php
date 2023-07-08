@@ -25,8 +25,11 @@ abstract class AbstractType extends Type
 
         try {
             return $this->dbStringToUuid((string)$value);
-        } catch (\ValueError|\UnexpectedValueException) {
-            throw ConversionException::conversionFailedUnserialization($value, 'Not a valid UUID or ULID representation');
+        } catch (\ValueError | \UnexpectedValueException) {
+            throw ConversionException::conversionFailedUnserialization(
+                $value,
+                'Not a valid UUID or ULID representation'
+            );
         }
     }
 
@@ -40,7 +43,12 @@ abstract class AbstractType extends Type
             try {
                 $value = $this->externalStringToUuid((string)$value);
             } catch (\UnexpectedValueException $e) {
-                throw ConversionException::conversionFailedSerialization($value, static::NAME, 'Not a valid UUID or ULID representation', $e);
+                throw ConversionException::conversionFailedSerialization(
+                    $value,
+                    static::NAME,
+                    'Not a valid UUID or ULID representation',
+                    $e
+                );
             }
         }
 
@@ -54,5 +62,10 @@ abstract class AbstractType extends Type
     public function getName(): string
     {
         return static::NAME;
+    }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
     }
 }

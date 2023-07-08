@@ -1,0 +1,20 @@
+{
+    "name": "arokettu/uuid-doctrine",
+    "type": "library",
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Arokettu\\Uuid\\Doctrine\\": "src"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "arokettu/uuid": "^1.0",
+        "doctrine/dbal": "^3.4"
+    },
+    "require-dev": {
+        "doctrine/orm": "^2.0"
+    }
+}

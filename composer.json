@@ -2,6 +2,9 @@
     "name": "arokettu/uuid-doctrine",
     "type": "library",
     "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
         "sort-packages": true
     },
     "autoload": {
@@ -15,6 +18,11 @@
         "doctrine/dbal": "^3.4"
     },
     "require-dev": {
-        "doctrine/orm": "^2.0"
+        "doctrine/orm": "^2.4",
+        "sandfox.dev/code-standard": "^1.2023.06.29",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "conflict": {
+        "doctrine/orm": "< 2.4"
     }
 }

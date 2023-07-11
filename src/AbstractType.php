@@ -27,7 +27,7 @@ abstract class AbstractType extends Type
             return $this->dbStringToUuid((string)$value);
         } catch (\TypeError | \UnexpectedValueException) {
             throw ConversionException::conversionFailedUnserialization(
-                $value,
+                static::NAME,
                 'Not a valid UUID or ULID representation'
             );
         }

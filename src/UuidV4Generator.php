@@ -7,6 +7,9 @@ namespace Arokettu\Uuid\Doctrine;
 use Arokettu\Uuid\Uuid;
 use Arokettu\Uuid\UuidFactory;
 
+/**
+ * @psalm-api
+ */
 final class UuidV4Generator extends AbstractGenerator
 {
     public function generateUuid(): Uuid

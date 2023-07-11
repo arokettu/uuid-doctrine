@@ -8,6 +8,9 @@ use Arokettu\Uuid\UlidParser;
 use Arokettu\Uuid\Uuid;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
+/**
+ * @psalm-api
+ */
 final class UlidType extends AbstractType
 {
     public const NAME = 'arokettu_ulid';

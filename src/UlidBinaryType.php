@@ -9,6 +9,9 @@ use Arokettu\Uuid\Uuid;
 use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
+/**
+ * @psalm-api
+ */
 final class UlidBinaryType extends AbstractType
 {
     public const NAME = 'arokettu_ulid_blob';

@@ -6,6 +6,7 @@ namespace Arokettu\Uuid\Doctrine;
 
 use Arokettu\Uuid\Uuid;
 use Arokettu\Uuid\UuidParser;
+use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 final class UuidBinaryType extends AbstractType
@@ -32,5 +33,10 @@ final class UuidBinaryType extends AbstractType
         $column['length'] = 16;
         $column['fixed'] = true;
         return $platform->getBinaryTypeDeclarationSQL($column);
+    }
+
+    public function getBindingType(): int
+    {
+        return ParameterType::BINARY;
     }
 }

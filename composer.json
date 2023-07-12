@@ -2,6 +2,21 @@
     "name": "arokettu/uuid-doctrine",
     "type": "library",
     "license": "MIT",
+    "description": "Doctrine support for arokettu/uuid",
+    "keywords": ["uuid", "ulid", "doctrine"],
+    "homepage": "https://sandfox.dev/php/uuid/doctrine.html",
+    "authors": [{
+        "name": "Anton Smirnov",
+        "email": "sandfox@sandfox.me",
+        "role": "developer",
+        "homepage": "https://sandfox.me/"
+    }],
+    "support": {
+        "issues": "https://gitlab.com/sandfox/uuid-doctrine/-/issues",
+        "source": "https://gitlab.com/sandfox/uuid-doctrine",
+        "docs": "https://arokettu-uuid.readthedocs.io/en/latest/doctrine.html",
+        "chat": "https://gitter.im/arokettu/community"
+    },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true

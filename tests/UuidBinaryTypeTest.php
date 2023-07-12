@@ -7,6 +7,7 @@ namespace Arokettu\Uuid\Doctrine\Tests;
 use Arokettu\Uuid\Doctrine\UuidBinaryType;
 use Arokettu\Uuid\UuidParser;
 use Arokettu\Uuid\UuidV4;
+use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Platforms\MariaDBPlatform;
 use Doctrine\DBAL\Platforms\MySQL80Platform;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
@@ -34,6 +35,13 @@ class UuidBinaryTypeTest extends TestCase
         $platform = new SqlitePlatform();
 
         self::assertTrue($type->requiresSQLCommentHint($platform));
+    }
+
+    public function testBindingType(): void
+    {
+        $type = new UuidBinaryType();
+
+        self::assertEquals(ParameterType::BINARY, $type->getBindingType());
     }
 
     public function testCreation(): void

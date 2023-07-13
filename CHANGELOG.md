@@ -2,6 +2,12 @@
 
 ## 1.x
 
+### 1.0.1
+
+*Jul 13, 2023*
+
+* Fix corrupt UUIDs read from database when binary returned as a resource
+
 ### 1.0.0
 
 *Jul 13, 2023*

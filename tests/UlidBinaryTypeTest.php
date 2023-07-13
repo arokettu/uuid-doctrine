@@ -72,14 +72,21 @@ class UlidBinaryTypeTest extends TestCase
         $type = new UlidBinaryType();
         $platform = new SqlitePlatform();
 
-        $uuid = '01H53P0ZMJJ9T3KE0595T5BXTV';
-        $uuidBin = hex2bin('018947607e92927439b805497455f75b');
+        $ulid = '01H53P0ZMJJ9T3KE0595T5BXTV';
+        $ulidBin = hex2bin('018947607e92927439b805497455f75b');
+        $ulidStream = fopen('php://temp', 'r+');
+        fwrite($ulidStream, $ulidBin);
+        rewind($ulidStream);
 
         self::assertNull($type->convertToPHPValue(null, $platform));
 
-        $uuidObj = $type->convertToPHPValue($uuidBin, $platform);
-        self::assertInstanceOf(Ulid::class, $uuidObj);
-        self::assertEquals($uuid, $uuidObj->toString());
+        $ulidObj = $type->convertToPHPValue($ulidBin, $platform);
+        self::assertInstanceOf(Ulid::class, $ulidObj);
+        self::assertEquals($ulid, $ulidObj->toString());
+
+        $ulidObj = $type->convertToPHPValue($ulidStream, $platform);
+        self::assertInstanceOf(Ulid::class, $ulidObj);
+        self::assertEquals($ulid, $ulidObj->toString());
     }
 
     public function testDbToPHPWrongType(): void
@@ -96,7 +103,7 @@ class UlidBinaryTypeTest extends TestCase
         $type->convertToPHPValue(123, $platform);
     }
 
-    public function testDbToPHPWrongFormat(): void
+    public function testDbToPHPWrongLength(): void
     {
         $type = new UlidBinaryType();
         $platform = new SqlitePlatform();
@@ -107,7 +114,43 @@ class UlidBinaryTypeTest extends TestCase
             "as an error was triggered by the unserialization: " .
             "'Not a valid UUID or ULID representation'"
         );
-        $type->convertToPHPValue('U1H53P0ZMJJ9T3KE0595T5BXTV', $platform);
+        $type->convertToPHPValue('123456789012345', $platform);
+    }
+
+    public function testDbToPHPWrongLengthStreamTooShort(): void
+    {
+        $type = new UlidBinaryType();
+        $platform = new SqlitePlatform();
+
+        $ulidStream = fopen('php://temp', 'r+');
+        fwrite($ulidStream, '123456789012');
+        rewind($ulidStream);
+
+        $this->expectException(ConversionException::class);
+        $this->expectExceptionMessage(
+            "Could not convert database value to 'arokettu_ulid_blob' " .
+            "as an error was triggered by the unserialization: " .
+            "'Not a valid UUID or ULID representation'"
+        );
+        $type->convertToPHPValue($ulidStream, $platform);
+    }
+
+    public function testDbToPHPWrongLengthStreamTooLong(): void
+    {
+        $type = new UlidBinaryType();
+        $platform = new SqlitePlatform();
+
+        $ulidStream = fopen('php://temp', 'r+');
+        fwrite($ulidStream, '1234567890123456789');
+        rewind($ulidStream);
+
+        $this->expectException(ConversionException::class);
+        $this->expectExceptionMessage(
+            "Could not convert database value to 'arokettu_ulid_blob' " .
+            "as an error was triggered by the unserialization: " .
+            "'Not a valid UUID or ULID representation'"
+        );
+        $type->convertToPHPValue($ulidStream, $platform);
     }
 
     public function testPHPToDb(): void

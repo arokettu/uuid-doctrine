@@ -9,6 +9,8 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
 
+use function Arokettu\IsResource\try_get_resource_type;
+
 abstract class AbstractType extends Type
 {
     public const NAME = '';
@@ -21,6 +23,11 @@ abstract class AbstractType extends Type
     {
         if ($value === null || $value instanceof Uuid) {
             return $value;
+        }
+
+        if (try_get_resource_type($value) === 'stream') {
+            // Read 17 bytes. If the  steam is longer than 16 bytes, crash, no need to read it whole
+            $value = stream_get_contents($value, 17);
         }
 
         try {

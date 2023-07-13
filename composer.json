@@ -35,6 +35,7 @@
     },
     "require": {
         "php": "^8.2",
+        "arokettu/is-resource": "^1.0",
         "arokettu/uuid": "^1.0",
         "doctrine/dbal": "^3.4"
     },

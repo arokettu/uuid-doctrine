@@ -21,7 +21,7 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity, Table(name: 'uuid_test1')]
 class UuidTest1
 {
-    #[Column(type: UuidType::NAME)]
+    #[Column(type: UuidBinaryType::NAME)]
     #[Id, GeneratedValue(strategy: 'CUSTOM'), CustomIdGenerator(UuidV4Generator::class)]
     public Uuid $id;
 

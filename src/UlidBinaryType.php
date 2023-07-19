@@ -16,12 +16,12 @@ final class UlidBinaryType extends AbstractType
 {
     public const NAME = 'arokettu_ulid_blob';
 
-    protected function uuidToDbString(Uuid $uuid): string
+    protected function uuidToDbString(Uuid $uuid, AbstractPlatform $platform): string
     {
         return $uuid->toBytes();
     }
 
-    protected function dbStringToUuid(string $uuid): Uuid
+    protected function dbStringToUuid(string $uuid, AbstractPlatform $platform): Uuid
     {
         return UlidParser::fromBytes($uuid);
     }

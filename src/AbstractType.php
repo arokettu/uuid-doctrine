@@ -15,8 +15,8 @@ abstract class AbstractType extends Type
 {
     public const NAME = '';
 
-    abstract protected function uuidToDbString(Uuid $uuid): string;
-    abstract protected function dbStringToUuid(string $uuid): Uuid;
+    abstract protected function uuidToDbString(Uuid $uuid, AbstractPlatform $platform): string;
+    abstract protected function dbStringToUuid(string $uuid, AbstractPlatform $platform): Uuid;
     abstract protected function externalStringToUuid(string $uuid): Uuid;
 
     public function convertToPHPValue(mixed $value, AbstractPlatform $platform): ?Uuid
@@ -31,7 +31,7 @@ abstract class AbstractType extends Type
         }
 
         try {
-            return $this->dbStringToUuid((string)$value);
+            return $this->dbStringToUuid((string)$value, $platform);
         } catch (\TypeError | \UnexpectedValueException) {
             throw ConversionException::conversionFailedUnserialization(
                 static::NAME,
@@ -60,7 +60,7 @@ abstract class AbstractType extends Type
         }
 
         if ($value instanceof Uuid) {
-            return $this->uuidToDbString($value);
+            return $this->uuidToDbString($value, $platform);
         }
 
         throw ConversionException::conversionFailedInvalidType($value, static::NAME, ['null', 'string', Uuid::class]);

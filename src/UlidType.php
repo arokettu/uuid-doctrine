@@ -15,12 +15,12 @@ final class UlidType extends AbstractType
 {
     public const NAME = 'arokettu_ulid';
 
-    protected function uuidToDbString(Uuid $uuid): string
+    protected function uuidToDbString(Uuid $uuid, AbstractPlatform $platform): string
     {
         return $uuid->toBase32();
     }
 
-    protected function dbStringToUuid(string $uuid): Uuid
+    protected function dbStringToUuid(string $uuid, AbstractPlatform $platform): Uuid
     {
         return UlidParser::fromBase32($uuid);
     }

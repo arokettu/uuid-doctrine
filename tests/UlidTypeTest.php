@@ -12,10 +12,8 @@ use Doctrine\DBAL\Platforms\MariaDBPlatform;
 use Doctrine\DBAL\Platforms\MySQL80Platform;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Platforms\OraclePlatform;
-use Doctrine\DBAL\Platforms\PostgreSQL100Platform;
-use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Platforms\SQLServerPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use PHPUnit\Framework\TestCase;
@@ -32,7 +30,7 @@ class UlidTypeTest extends TestCase
     public function testRequireComment(): void
     {
         $type = new UlidType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         self::assertTrue($type->requiresSQLCommentHint($platform));
     }
@@ -49,12 +47,10 @@ class UlidTypeTest extends TestCase
         $type = new UlidType();
 
         $sql = [
-            [new SqlitePlatform(), 'CHAR(26)'],
+            [new SQLitePlatform(), 'CHAR(26)'],
             [new MySQLPlatform(), 'CHAR(26)'],
             [new MySQL80Platform(), 'CHAR(26)'],
             [new PostgreSQLPlatform(), 'CHAR(26)'],
-            [new PostgreSQL94Platform(), 'CHAR(26)'],
-            [new PostgreSQL100Platform(), 'CHAR(26)'],
             [new MariaDBPlatform(), 'CHAR(26)'],
             [new SQLServerPlatform(), 'NCHAR(26)'],
             [new OraclePlatform(), 'CHAR(26)'],
@@ -70,7 +66,7 @@ class UlidTypeTest extends TestCase
     public function testDbToPHP(): void
     {
         $type = new UlidType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $uuid = '01H53P0ZMJJ9T3KE0595T5BXTV';
 
@@ -84,7 +80,7 @@ class UlidTypeTest extends TestCase
     public function testDbToPHPWrongType(): void
     {
         $type = new UlidType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
@@ -97,7 +93,7 @@ class UlidTypeTest extends TestCase
     public function testDbToPHPWrongFormat(): void
     {
         $type = new UlidType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
@@ -110,7 +106,7 @@ class UlidTypeTest extends TestCase
     public function testPHPToDb(): void
     {
         $type = new UlidType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $uuid = '01H53P0ZMJJ9T3KE0595T5BXTV';
         $uuidObj = UuidParser::fromBase32($uuid);
@@ -131,7 +127,7 @@ class UlidTypeTest extends TestCase
     public function testPHPToDbWrongType(): void
     {
         $type = new UlidType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
@@ -144,7 +140,7 @@ class UlidTypeTest extends TestCase
     public function testPHPToDbWrongFormat(): void
     {
         $type = new UlidType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(

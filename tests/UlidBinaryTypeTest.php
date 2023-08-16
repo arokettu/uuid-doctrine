@@ -12,10 +12,8 @@ use Doctrine\DBAL\Platforms\MariaDBPlatform;
 use Doctrine\DBAL\Platforms\MySQL80Platform;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Platforms\OraclePlatform;
-use Doctrine\DBAL\Platforms\PostgreSQL100Platform;
-use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Platforms\SQLServerPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use PHPUnit\Framework\TestCase;
@@ -32,7 +30,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testRequireComment(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         self::assertTrue($type->requiresSQLCommentHint($platform));
     }
@@ -49,12 +47,10 @@ class UlidBinaryTypeTest extends TestCase
         $type = new UlidBinaryType();
 
         $sql = [
-            [new SqlitePlatform(), 'BLOB'],
+            [new SQLitePlatform(), 'BLOB'],
             [new MySQLPlatform(), 'BINARY(16)'],
             [new MySQL80Platform(), 'BINARY(16)'],
             [new PostgreSQLPlatform(), 'BYTEA'],
-            [new PostgreSQL94Platform(), 'BYTEA'],
-            [new PostgreSQL100Platform(), 'BYTEA'],
             [new MariaDBPlatform(), 'BINARY(16)'],
             [new SQLServerPlatform(), 'BINARY(16)'],
             [new OraclePlatform(), 'RAW(16)'],
@@ -70,7 +66,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testDbToPHP(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $ulid = '01H53P0ZMJJ9T3KE0595T5BXTV';
         $ulidBin = hex2bin('018947607e92927439b805497455f75b');
@@ -92,7 +88,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testDbToPHPWrongType(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
@@ -106,7 +102,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testDbToPHPWrongLength(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
@@ -120,7 +116,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testDbToPHPWrongLengthStreamTooShort(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $ulidStream = fopen('php://temp', 'r+');
         fwrite($ulidStream, '123456789012');
@@ -138,7 +134,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testDbToPHPWrongLengthStreamTooLong(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $ulidStream = fopen('php://temp', 'r+');
         fwrite($ulidStream, '1234567890123456789');
@@ -156,7 +152,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testPHPToDb(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $uuid = '01H53P0ZMJJ9T3KE0595T5BXTV';
         $uuidBin = hex2bin('018947607e92927439b805497455f75b');
@@ -178,7 +174,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testPHPToDbWrongType(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
@@ -191,7 +187,7 @@ class UlidBinaryTypeTest extends TestCase
     public function testPHPToDbWrongFormat(): void
     {
         $type = new UlidBinaryType();
-        $platform = new SqlitePlatform();
+        $platform = new SQLitePlatform();
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(

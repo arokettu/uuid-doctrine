@@ -17,6 +17,11 @@ use PHPUnit\Framework\TestCase;
 
 class GeneratorsTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        $this->markTestSkipped('doctrine/orm does not support doctrine/dbal 4 yet');
+    }
+
     protected function getEM(): EntityManager
     {
         // not really used but must be passed

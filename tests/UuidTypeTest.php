@@ -15,7 +15,9 @@ use Doctrine\DBAL\Platforms\OraclePlatform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Platforms\SQLServerPlatform;
-use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Exception\InvalidType;
+use Doctrine\DBAL\Types\Exception\SerializationFailed;
+use Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use PHPUnit\Framework\TestCase;
 
 class UuidTypeTest extends TestCase
@@ -82,10 +84,10 @@ class UuidTypeTest extends TestCase
         $type = new UuidType();
         $platform = new SQLitePlatform();
 
-        $this->expectException(ConversionException::class);
+        $this->expectException(ValueNotConvertible::class);
         $this->expectExceptionMessage(
-            "Could not convert database value to 'arokettu_uuid' as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            'Could not convert database value to "arokettu_uuid" as an error was triggered by the unserialization: ' .
+            'Not a valid UUID or ULID representation'
         );
         $type->convertToPHPValue(123, $platform);
     }
@@ -95,10 +97,10 @@ class UuidTypeTest extends TestCase
         $type = new UuidType();
         $platform = new SQLitePlatform();
 
-        $this->expectException(ConversionException::class);
+        $this->expectException(ValueNotConvertible::class);
         $this->expectExceptionMessage(
-            "Could not convert database value to 'arokettu_uuid' as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            'Could not convert database value to "arokettu_uuid" as an error was triggered by the unserialization: ' .
+            'Not a valid UUID or ULID representation'
         );
         $type->convertToPHPValue('z3e52e6e-5f9b-4630-ad97-864e0a0661a3', $platform);
     }
@@ -129,7 +131,7 @@ class UuidTypeTest extends TestCase
         $type = new UuidType();
         $platform = new SQLitePlatform();
 
-        $this->expectException(ConversionException::class);
+        $this->expectException(InvalidType::class);
         $this->expectExceptionMessage(
             "Could not convert PHP value 123 to type arokettu_uuid. " .
             "Expected one of the following types: null, string, Arokettu\Uuid\Uuid"
@@ -142,10 +144,10 @@ class UuidTypeTest extends TestCase
         $type = new UuidType();
         $platform = new SQLitePlatform();
 
-        $this->expectException(ConversionException::class);
+        $this->expectException(SerializationFailed::class);
         $this->expectExceptionMessage(
-            "Could not convert PHP type 'string' to 'arokettu_uuid', " .
-            "as an 'Not a valid UUID or ULID representation' error was triggered by the serialization"
+            'Could not convert PHP type "string" to "arokettu_uuid". ' .
+            'An error was triggered by the serialization: Not a valid UUID or ULID representation'
         );
         $type->convertToDatabaseValue('z3e52e6e-5f9b-4630-ad97-864e0a0661a3', $platform);
     }

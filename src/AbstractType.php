@@ -6,7 +6,9 @@ namespace Arokettu\Uuid\Doctrine;
 
 use Arokettu\Uuid\Uuid;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Exception\InvalidType;
+use Doctrine\DBAL\Types\Exception\SerializationFailed;
+use Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use Doctrine\DBAL\Types\Type;
 
 use function Arokettu\IsResource\try_get_resource_type;
@@ -33,7 +35,8 @@ abstract class AbstractType extends Type
         try {
             return $this->dbStringToUuid((string)$value);
         } catch (\TypeError | \UnexpectedValueException) {
-            throw ConversionException::conversionFailedUnserialization(
+            throw ValueNotConvertible::new(
+                $value,
                 static::NAME,
                 'Not a valid UUID or ULID representation'
             );
@@ -50,7 +53,7 @@ abstract class AbstractType extends Type
             try {
                 $value = $this->externalStringToUuid((string)$value);
             } catch (\TypeError | \UnexpectedValueException $e) {
-                throw ConversionException::conversionFailedSerialization(
+                throw SerializationFailed::new(
                     $value,
                     static::NAME,
                     'Not a valid UUID or ULID representation',
@@ -63,7 +66,7 @@ abstract class AbstractType extends Type
             return $this->uuidToDbString($value);
         }
 
-        throw ConversionException::conversionFailedInvalidType($value, static::NAME, ['null', 'string', Uuid::class]);
+        throw InvalidType::new($value, static::NAME, ['null', 'string', Uuid::class]);
     }
 
     public function getName(): string

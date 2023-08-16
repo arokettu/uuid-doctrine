@@ -38,7 +38,7 @@ final class UuidBinaryType extends AbstractType
         return $platform->getBinaryTypeDeclarationSQL($column);
     }
 
-    public function getBindingType(): int
+    public function getBindingType(): ParameterType
     {
         return ParameterType::BINARY;
     }

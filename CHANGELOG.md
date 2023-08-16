@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.x
+
+### 2.0.0
+
+*Aug 17, 2023*
+
+* Added support for doctrine/dbal v4
+  * Dropped support for doctrine/dbal v3. Unfortunately they are incompatible
+
 ## 1.x
 
 ### 1.0.1

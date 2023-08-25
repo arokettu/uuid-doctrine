@@ -17,11 +17,6 @@ use PHPUnit\Framework\TestCase;
 
 class GeneratorsTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        $this->markTestSkipped('doctrine/orm does not support doctrine/dbal 4 yet');
-    }
-
     protected function getEM(): EntityManager
     {
         // not really used but must be passed
@@ -32,7 +27,7 @@ class GeneratorsTest extends TestCase
     {
         $gen = new UuidV4Generator();
 
-        self::assertInstanceOf(UuidV4::class, $uuid1 = $gen->generate($this->getEM(), new \stdClass()));
+        self::assertInstanceOf(UuidV4::class, $uuid1 = $gen->generateId($this->getEM(), new \stdClass()));
         self::assertInstanceOf(UuidV4::class, $uuid2 = $gen->generateId($this->getEM(), new \stdClass()));
 
         self::assertNotEquals($uuid1, $uuid2); // not guaranteed but that should be the point of the UUID
@@ -45,7 +40,7 @@ class GeneratorsTest extends TestCase
         $clock = new RoundingClock(new SystemClock(), RoundingClock::ROUND_MILLISECONDS);
 
         $dtBefore = $clock->now();
-        self::assertInstanceOf(UuidV7::class, $uuid1 = $gen->generate($this->getEM(), new \stdClass()));
+        self::assertInstanceOf(UuidV7::class, $uuid1 = $gen->generateId($this->getEM(), new \stdClass()));
         self::assertInstanceOf(UuidV7::class, $uuid2 = $gen->generateId($this->getEM(), new \stdClass()));
         $dtAfter = $clock->now();
 
@@ -63,7 +58,7 @@ class GeneratorsTest extends TestCase
         $clock = new RoundingClock(new SystemClock(), RoundingClock::ROUND_MILLISECONDS);
 
         $dtBefore = $clock->now();
-        self::assertInstanceOf(Ulid::class, $uuid1 = $gen->generate($this->getEM(), new \stdClass()));
+        self::assertInstanceOf(Ulid::class, $uuid1 = $gen->generateId($this->getEM(), new \stdClass()));
         self::assertInstanceOf(Ulid::class, $uuid2 = $gen->generateId($this->getEM(), new \stdClass()));
         $dtAfter = $clock->now();
 

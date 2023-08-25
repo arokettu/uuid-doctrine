@@ -42,12 +42,10 @@
     },
     "require-dev": {
         "arokettu/clock": "^2.2",
+        "doctrine/orm": "^3.0@dev",
         "phpunit/phpunit": "^10.2",
         "sandfox.dev/code-standard": "^1.2023.06.29",
         "squizlabs/php_codesniffer": "*",
         "vimeo/psalm": "^5.13"
-    },
-    "conflict": {
-        "doctrine/orm": "< 2.4"
     }
 }

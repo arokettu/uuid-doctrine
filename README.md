@@ -35,6 +35,11 @@ class UuidObject
 composer require arokettu/uuid-doctrine
 ```
 
+* Version 1.x is for `doctrine/dbal` v3
+* Version 2.x is for `doctrine/dbal` v4
+
+The versions are fully interchangeable except for hard dependency on DBAL. 
+
 ## Documentation
 
 Read full documentation for the base library here: <https://sandfox.dev/php/uuid.html>
@@ -46,6 +51,8 @@ Also on Read the Docs: <https://arokettu-uuid.readthedocs.io/>
 Please file issues on our main repo at GitLab: <https://gitlab.com/sandfox/php-uuid/-/issues>
 
 Feel free to ask any questions in our room on Gitter: <https://gitter.im/arokettu/community>
+
+Both 1.x and 2.x versions are actively supported.
 
 ## License
 

@@ -33,7 +33,7 @@
             "Arokettu\\Uuid\\Doctrine\\Tests\\": "tests"
         }
     },
-    "minimum-stability": "alpha",
+    "minimum-stability": "beta",
     "require": {
         "php": "^8.2",
         "arokettu/is-resource": "^1.0",
@@ -42,7 +42,7 @@
     },
     "require-dev": {
         "arokettu/clock": "^2.2",
-        "doctrine/orm": "^3.0@dev",
+        "doctrine/orm": "^3.0",
         "phpunit/phpunit": "^10.2",
         "sandfox.dev/code-standard": "^1.2023.06.29",
         "squizlabs/php_codesniffer": "*",

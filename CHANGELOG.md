@@ -2,6 +2,12 @@
 
 ## 2.x
 
+### 2.0.1
+
+*Nov 3, 2023*
+
+* Update the base library requirement and update not to use the deprecated sequences
+
 ### 2.0.0
 
 *Aug 17, 2023*

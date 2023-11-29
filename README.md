@@ -6,7 +6,7 @@
 [![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/sandfox/uuid-doctrine/master.svg?style=flat-square)](https://gitlab.com/sandfox/uuid-doctrine/-/pipelines)
 [![Codecov](https://img.shields.io/codecov/c/gl/sandfox/uuid-doctrine?style=flat-square)](https://codecov.io/gl/sandfox/uuid-doctrine/)
 
-[``arokettu/uuid``](https://sandfox.dev/php/uuid.html) row classes and ID generators for Doctrine.
+[``arokettu/uuid``](https://sandfox.dev/php/uuid.html) column classes and ID generators for Doctrine.
 
 ## Usage
 

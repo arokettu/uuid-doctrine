@@ -2,6 +2,12 @@
 
 ## 2.x
 
+### 2.0.2
+
+*Dec 7, 2023*
+
+* Support arokettu/uuid v2
+
 ### 2.0.1
 
 *Nov 3, 2023*

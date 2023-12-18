@@ -18,6 +18,8 @@
 
 *Aug 17, 2023*
 
+Branched from 1.0.1
+
 * Added support for doctrine/dbal v4
   * Dropped support for doctrine/dbal v3. Unfortunately they are incompatible
 

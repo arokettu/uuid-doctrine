@@ -34,7 +34,7 @@ abstract class AbstractType extends Type
 
         try {
             return $this->dbStringToUuid((string)$value);
-        } catch (\TypeError | \UnexpectedValueException) {
+        } catch (\TypeError | \UnexpectedValueException | \DomainException) {
             throw ValueNotConvertible::new(
                 $value,
                 static::NAME,
@@ -52,7 +52,7 @@ abstract class AbstractType extends Type
         if (\is_string($value) || $value instanceof \Stringable) {
             try {
                 $value = $this->externalStringToUuid((string)$value);
-            } catch (\TypeError | \UnexpectedValueException $e) {
+            } catch (\TypeError | \UnexpectedValueException | \DomainException $e) {
                 throw SerializationFailed::new(
                     $value,
                     static::NAME,

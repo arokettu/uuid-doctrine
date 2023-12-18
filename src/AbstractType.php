@@ -32,7 +32,7 @@ abstract class AbstractType extends Type
 
         try {
             return $this->dbStringToUuid((string)$value);
-        } catch (\TypeError | \UnexpectedValueException) {
+        } catch (\TypeError | \UnexpectedValueException | \DomainException) {
             throw ConversionException::conversionFailedUnserialization(
                 static::NAME,
                 'Not a valid UUID or ULID representation'
@@ -49,7 +49,7 @@ abstract class AbstractType extends Type
         if (\is_string($value) || $value instanceof \Stringable) {
             try {
                 $value = $this->externalStringToUuid((string)$value);
-            } catch (\TypeError | \UnexpectedValueException $e) {
+            } catch (\TypeError | \UnexpectedValueException | \DomainException $e) {
                 throw ConversionException::conversionFailedSerialization(
                     $value,
                     static::NAME,

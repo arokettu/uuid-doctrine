@@ -2,6 +2,12 @@
 
 ## 1.x
 
+### 1.0.4
+
+*Dec 18, 2023*
+
+Fix exception incompatibility with the latest arokettu/uuid
+
 ### 1.0.3
 
 *Dec 7, 2023*

@@ -46,9 +46,14 @@ abstract class AbstractType extends Type
             return null;
         }
 
+        if ($value instanceof Uuid) {
+            return $this->uuidToDbString($value);
+        }
+
         if (\is_string($value) || $value instanceof \Stringable) {
             try {
                 $value = $this->externalStringToUuid((string)$value);
+                return $this->uuidToDbString($value);
             } catch (\TypeError | \UnexpectedValueException | \DomainException $e) {
                 throw ConversionException::conversionFailedSerialization(
                     $value,
@@ -57,10 +62,6 @@ abstract class AbstractType extends Type
                     $e
                 );
             }
-        }
-
-        if ($value instanceof Uuid) {
-            return $this->uuidToDbString($value);
         }
 
         throw ConversionException::conversionFailedInvalidType($value, static::NAME, ['null', 'string', Uuid::class]);

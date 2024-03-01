@@ -22,21 +22,6 @@ use PHPUnit\Framework\TestCase;
 
 class UlidBinaryTypeTest extends TestCase
 {
-    public function testName(): void
-    {
-        $type = new UlidBinaryType();
-
-        self::assertEquals($type::NAME, $type->getName());
-    }
-
-    public function testRequireComment(): void
-    {
-        $type = new UlidBinaryType();
-        $platform = new SQLitePlatform();
-
-        self::assertTrue($type->requiresSQLCommentHint($platform));
-    }
-
     public function testBindingType(): void
     {
         $type = new UlidBinaryType();

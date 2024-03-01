@@ -22,20 +22,6 @@ use PHPUnit\Framework\TestCase;
 
 class UuidTypeTest extends TestCase
 {
-    public function testName(): void
-    {
-        $type = new UuidType();
-
-        self::assertEquals($type::NAME, $type->getName());
-    }
-
-    public function testRequireComment(): void
-    {
-        $type = new UuidType();
-        $platform = new SQLitePlatform();
-
-        self::assertTrue($type->requiresSQLCommentHint($platform));
-    }
 
     public function testBindingType(): void
     {

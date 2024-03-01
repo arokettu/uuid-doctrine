@@ -69,14 +69,4 @@ abstract class AbstractType extends Type
 
         throw InvalidType::new($value, static::NAME, ['null', 'string', Uuid::class]);
     }
-
-    public function getName(): string
-    {
-        return static::NAME;
-    }
-
-    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
-    {
-        return true;
-    }
 }

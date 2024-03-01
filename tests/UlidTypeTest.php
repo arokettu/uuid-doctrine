@@ -22,21 +22,6 @@ use PHPUnit\Framework\TestCase;
 
 class UlidTypeTest extends TestCase
 {
-    public function testName(): void
-    {
-        $type = new UlidType();
-
-        self::assertEquals($type::NAME, $type->getName());
-    }
-
-    public function testRequireComment(): void
-    {
-        $type = new UlidType();
-        $platform = new SQLitePlatform();
-
-        self::assertTrue($type->requiresSQLCommentHint($platform));
-    }
-
     public function testBindingType(): void
     {
         $type = new UlidType();

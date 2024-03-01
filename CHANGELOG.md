@@ -2,6 +2,12 @@
 
 ## 2.x
 
+### 2.0.4
+
+*Mar 1, 2024*
+
+* Fix double-encoding of the UUID
+
 ### 2.0.3
 
 *Dec 18, 2023*

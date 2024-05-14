@@ -2,6 +2,12 @@
 
 ## 2.x
 
+### 2.0.5
+
+*May 15, 2024*
+
+* arokettu/uuid v3 is allowed
+
 ### 2.0.4
 
 *Mar 1, 2024*

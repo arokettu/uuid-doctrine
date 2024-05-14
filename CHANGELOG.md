@@ -37,6 +37,12 @@ Branched from 1.0.1
 
 ## 1.x
 
+### 1.0.6
+
+*May 15, 2024*
+
+* arokettu/uuid v3 is allowed
+
 ### 1.0.5
 
 *Mar 1, 2024*

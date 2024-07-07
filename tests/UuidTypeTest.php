@@ -22,7 +22,6 @@ use PHPUnit\Framework\TestCase;
 
 class UuidTypeTest extends TestCase
 {
-
     public function testBindingType(): void
     {
         $type = new UuidType();

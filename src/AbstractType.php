@@ -21,7 +21,7 @@ abstract class AbstractType extends Type
     abstract protected function dbStringToUuid(string $uuid): Uuid;
     abstract protected function externalStringToUuid(string $uuid): Uuid;
 
-    public function convertToPHPValue(mixed $value, AbstractPlatform $platform): ?Uuid
+    public function convertToPHPValue(mixed $value, AbstractPlatform $platform): Uuid|null
     {
         if ($value === null || $value instanceof Uuid) {
             return $value;
@@ -43,7 +43,7 @@ abstract class AbstractType extends Type
         }
     }
 
-    public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): ?string
+    public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): string|null
     {
         if ($value === null) {
             return null;

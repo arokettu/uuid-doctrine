@@ -8,6 +8,17 @@
 
 [``arokettu/uuid``](https://sandfox.dev/php/uuid.html) column classes and ID generators for Doctrine.
 
+## Installation
+
+```bash
+composer require arokettu/uuid-doctrine
+```
+
+* Version 1.x is for `doctrine/dbal` v3
+* Version 2.x is for `doctrine/dbal` v4
+
+The versions are fully interchangeable except for hard dependency on DBAL.
+
 ## Usage
 
 ```php
@@ -28,17 +39,6 @@ class UuidObject
     public Uuid $uuidString;
 }
 ```
-
-## Installation
-
-```bash
-composer require arokettu/uuid-doctrine
-```
-
-* Version 1.x is for `doctrine/dbal` v3
-* Version 2.x is for `doctrine/dbal` v4
-
-The versions are fully interchangeable except for hard dependency on DBAL. 
 
 ## Documentation
 

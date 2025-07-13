@@ -20,7 +20,7 @@ use Doctrine\DBAL\Types\Exception\SerializationFailed;
 use Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use PHPUnit\Framework\TestCase;
 
-class UuidBinaryTypeTest extends TestCase
+final class UuidBinaryTypeTest extends TestCase
 {
     public function testBindingType(): void
     {

@@ -15,7 +15,7 @@ use Arokettu\Uuid\UuidV7;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 
-class GeneratorsTest extends TestCase
+final class GeneratorsTest extends TestCase
 {
     protected function getEM(): EntityManager
     {

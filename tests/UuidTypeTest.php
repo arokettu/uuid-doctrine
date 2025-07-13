@@ -20,7 +20,7 @@ use Doctrine\DBAL\Types\Exception\SerializationFailed;
 use Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use PHPUnit\Framework\TestCase;
 
-class UuidTypeTest extends TestCase
+final class UuidTypeTest extends TestCase
 {
     public function testBindingType(): void
     {
@@ -118,8 +118,8 @@ class UuidTypeTest extends TestCase
 
         $this->expectException(InvalidType::class);
         $this->expectExceptionMessage(
-            "Could not convert PHP value 123 to type arokettu_uuid. " .
-            "Expected one of the following types: null, string, Arokettu\Uuid\Uuid"
+            'Could not convert PHP value 123 to type arokettu_uuid. ' .
+            'Expected one of the following types: null, string, Arokettu\Uuid\Uuid',
         );
         $type->convertToDatabaseValue(123, $platform);
     }

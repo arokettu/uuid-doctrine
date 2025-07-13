@@ -72,7 +72,7 @@ final class UuidTypeTest extends TestCase
         $this->expectException(ValueNotConvertible::class);
         $this->expectExceptionMessage(
             'Could not convert database value to "arokettu_uuid" as an error was triggered by the unserialization: ' .
-            'Not a valid UUID or ULID representation'
+            'Not a valid UUID or ULID representation',
         );
         $type->convertToPHPValue(123, $platform);
     }
@@ -85,7 +85,7 @@ final class UuidTypeTest extends TestCase
         $this->expectException(ValueNotConvertible::class);
         $this->expectExceptionMessage(
             'Could not convert database value to "arokettu_uuid" as an error was triggered by the unserialization: ' .
-            'Not a valid UUID or ULID representation'
+            'Not a valid UUID or ULID representation',
         );
         $type->convertToPHPValue('z3e52e6e-5f9b-4630-ad97-864e0a0661a3', $platform);
     }
@@ -132,7 +132,7 @@ final class UuidTypeTest extends TestCase
         $this->expectException(SerializationFailed::class);
         $this->expectExceptionMessage(
             'Could not convert PHP type "string" to "arokettu_uuid". ' .
-            'An error was triggered by the serialization: Not a valid UUID or ULID representation'
+            'An error was triggered by the serialization: Not a valid UUID or ULID representation',
         );
         $type->convertToDatabaseValue('z3e52e6e-5f9b-4630-ad97-864e0a0661a3', $platform);
     }

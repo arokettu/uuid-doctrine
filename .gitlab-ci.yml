@@ -53,8 +53,6 @@ coverage:
     INSTALL_XDEBUG: 1
   extends: .test
   stage: report
-  only:
-    - master
   image: php:8.2
   script:
     - composer update

@@ -20,7 +20,7 @@ use Doctrine\DBAL\Platforms\SQLServerPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use PHPUnit\Framework\TestCase;
 
-class UuidTypeTest extends TestCase
+final class UuidTypeTest extends TestCase
 {
     public function testName(): void
     {
@@ -89,7 +89,7 @@ class UuidTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert database value to 'arokettu_uuid' as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            "'Not a valid UUID or ULID representation'",
         );
         $type->convertToPHPValue(123, $platform);
     }
@@ -102,7 +102,7 @@ class UuidTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert database value to 'arokettu_uuid' as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            "'Not a valid UUID or ULID representation'",
         );
         $type->convertToPHPValue('z3e52e6e-5f9b-4630-ad97-864e0a0661a3', $platform);
     }
@@ -135,8 +135,8 @@ class UuidTypeTest extends TestCase
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
-            "Could not convert PHP value 123 to type arokettu_uuid. " .
-            "Expected one of the following types: null, string, Arokettu\Uuid\Uuid"
+            'Could not convert PHP value 123 to type arokettu_uuid. ' .
+            'Expected one of the following types: null, string, Arokettu\Uuid\Uuid',
         );
         $type->convertToDatabaseValue(123, $platform);
     }
@@ -149,7 +149,7 @@ class UuidTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert PHP type 'string' to 'arokettu_uuid', " .
-            "as an 'Not a valid UUID or ULID representation' error was triggered by the serialization"
+            "as an 'Not a valid UUID or ULID representation' error was triggered by the serialization",
         );
         $type->convertToDatabaseValue('z3e52e6e-5f9b-4630-ad97-864e0a0661a3', $platform);
     }

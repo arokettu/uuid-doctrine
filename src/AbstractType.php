@@ -35,7 +35,7 @@ abstract class AbstractType extends Type
         } catch (\TypeError | \UnexpectedValueException | \DomainException) {
             throw ConversionException::conversionFailedUnserialization(
                 static::NAME,
-                'Not a valid UUID or ULID representation'
+                'Not a valid UUID or ULID representation',
             );
         }
     }
@@ -59,7 +59,7 @@ abstract class AbstractType extends Type
                     $value,
                     static::NAME,
                     'Not a valid UUID or ULID representation',
-                    $e
+                    $e,
                 );
             }
         }

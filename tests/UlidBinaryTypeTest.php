@@ -20,7 +20,7 @@ use Doctrine\DBAL\Platforms\SQLServerPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use PHPUnit\Framework\TestCase;
 
-class UlidBinaryTypeTest extends TestCase
+final class UlidBinaryTypeTest extends TestCase
 {
     public function testName(): void
     {
@@ -97,8 +97,8 @@ class UlidBinaryTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert database value to 'arokettu_ulid_blob' " .
-            "as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            'as an error was triggered by the unserialization: ' .
+            "'Not a valid UUID or ULID representation'",
         );
         $type->convertToPHPValue(123, $platform);
     }
@@ -111,8 +111,8 @@ class UlidBinaryTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert database value to 'arokettu_ulid_blob' " .
-            "as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            'as an error was triggered by the unserialization: ' .
+            "'Not a valid UUID or ULID representation'",
         );
         $type->convertToPHPValue('123456789012345', $platform);
     }
@@ -129,8 +129,8 @@ class UlidBinaryTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert database value to 'arokettu_ulid_blob' " .
-            "as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            'as an error was triggered by the unserialization: ' .
+            "'Not a valid UUID or ULID representation'",
         );
         $type->convertToPHPValue($ulidStream, $platform);
     }
@@ -147,8 +147,8 @@ class UlidBinaryTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert database value to 'arokettu_ulid_blob' " .
-            "as an error was triggered by the unserialization: " .
-            "'Not a valid UUID or ULID representation'"
+            'as an error was triggered by the unserialization: ' .
+            "'Not a valid UUID or ULID representation'",
         );
         $type->convertToPHPValue($ulidStream, $platform);
     }
@@ -182,8 +182,8 @@ class UlidBinaryTypeTest extends TestCase
 
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
-            "Could not convert PHP value 123 to type arokettu_ulid_blob. " .
-            "Expected one of the following types: null, string, Arokettu\Uuid\Uuid"
+            'Could not convert PHP value 123 to type arokettu_ulid_blob. ' .
+            'Expected one of the following types: null, string, Arokettu\Uuid\Uuid',
         );
         $type->convertToDatabaseValue(123, $platform);
     }
@@ -196,7 +196,7 @@ class UlidBinaryTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $this->expectExceptionMessage(
             "Could not convert PHP type 'string' to 'arokettu_ulid_blob', " .
-            "as an 'Not a valid UUID or ULID representation' error was triggered by the serialization"
+            "as an 'Not a valid UUID or ULID representation' error was triggered by the serialization",
         );
         $type->convertToDatabaseValue('U1H53P0ZMJJ9T3KE0595T5BXTV', $platform);
     }
